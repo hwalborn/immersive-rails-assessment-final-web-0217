@@ -10,9 +10,11 @@ class AppearancesController < ApplicationController
 
   def create
     @appearance = Appearance.new(appearance_params)
-    if @appearance.save
+    if @appearance.valid?
+      @appearance.save
       redirect_to @appearance.episode
     else
+      flash[:error] = @appearance.errors.full_messages[0]
       redirect_to new_appearance_path
     end
   end
@@ -24,17 +26,16 @@ class AppearancesController < ApplicationController
   def update
     appearance = Appearance.find(params[:id])
     if appearance.valid?
-      appearance.user = User.find(session[:user_id])
-      appearance.save
-      redirect_to episodes_path
+      appearance.update(appearance_params)
+      redirect_to appearances_path
     else
+      flash[:error] = appearance.errors.full_messages[0]
       redirect_to edit_appearance_path(appearance)
     end
   end
   private
 
   def appearance_params
-    params.require(:appearance).permit(:guest_id, :episode_id, :rating)
+    params.require(:appearance).permit(:guest_id, :episode_id, :rating, :user_id)
   end
-
 end

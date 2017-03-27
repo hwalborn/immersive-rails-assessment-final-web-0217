@@ -1,6 +1,9 @@
 <h1>Show Date: <%= @appearance.episode.date %></h1>
 <h1>Guest: <%= @appearance.guest.name %></h1>
 <%= form_for @appearance do |f| %>
-  <%= f.number_field :rating, in: 1..5 %>
+  <%= f.label :rating %>
+  <%= f.number_field :rating, in: 1..5 %><br>
+  <h3>Producer: </h3>
+  <%= f.collection_select :user_id, User.all, :id, :username %><br>
   <%= f.submit %>
 <% end %>

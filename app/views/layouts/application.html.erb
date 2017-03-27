@@ -13,6 +13,17 @@
       <%= link_to "All guests", guests_path %>
       <%= link_to "All episodes", episodes_path %>
       <%= link_to "All Appearances", appearances_path %>
+      <%= link_to "Add New Appearance", new_appearance_path %>
+      <% if logged_in %>
+        <%= link_to "logout", logout_path %>
+      <% else %>
+        <%= link_to "login", login_path %>
+      <% end %>
+    </div>
+    <div class="errors">
+      <% if flash[:error] %>
+        <h1><%= flash[:error] %></h1>
+      <% end %>
     </div>
     <%= yield %>
   </body>

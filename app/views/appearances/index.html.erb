@@ -1,5 +1,15 @@
 <% @appearances.each do |appearance| %>
-  <h3>Guest: <%= appearance.guest.name %></h3>
-  <h3>Episode Date: <%= appearance.episode.date %></h3>
-  <%= link_to "Edit this Appearance", edit_appearance_path(appearance) %>
+  <div style="margin-top: 35px;">
+    <h3>Guest: <%= appearance.guest.name %></h3>
+    <h3>Episode Date: <%= appearance.episode.date %></h3>
+    <% if appearance.user %>
+      <h4>Producer: <%= appearance.user.username %></h4>
+    <% else %>
+      <h4>Producer: No one produced this show</h4>
+    <% end %>
+    <% if logged_in %>
+      <%= link_to "Edit this Appearance", edit_appearance_path(appearance) %>
+    <% end %>
+    <p>----------------------------------</p>
+  </div>
 <% end %>
