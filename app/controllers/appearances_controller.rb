@@ -13,6 +13,19 @@ class AppearancesController < ApplicationController
     end
   end
 
+  def edit
+    @appearance = Appearance.find(params[:id])
+  end
+
+  def update
+    appearance = Appearance.find(params[:id])
+    if appearance.valid?
+      appearance.save
+      redirect_to episodes_path
+    else
+      redirect_to new_appearance_path(appearance)
+    end
+  end
   private
 
   def appearance_params
