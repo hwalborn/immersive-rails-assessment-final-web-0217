@@ -1,0 +1,5 @@
+<% @appearances.each do |appearance| %>
+  <h3>Guest: <%= appearance.guest.name %></h3>
+  <h3>Episode Date: <%= appearance.episode.date %></h3>
+  <%= link_to "Edit this Appearance", edit_appearance_path(appearance) %>
+<% end %>

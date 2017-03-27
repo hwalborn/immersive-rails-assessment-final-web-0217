@@ -9,6 +9,11 @@
   </head>
 
   <body>
+    <div class="nav">
+      <%= link_to "All guests", guests_path %>
+      <%= link_to "All episodes", episodes_path %>
+      <%= link_to "All Appearances", appearances_path %>
+    </div>
     <%= yield %>
   </body>
 </html>
